@@ -1,0 +1,155 @@
+/* 
+    Created on : Nov. 17, 2022, 9:56:34 p.m.
+    Author     : kevin
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,900;1,500&display=swap');
+* {
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;    
+}
+
+.title {
+
+    font-weight: 900;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+li, a, button {
+    font-weight: 500;
+    font-size: 15px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 5%;
+    background: #21242A;
+    color: #edf0f1;
+}
+
+.navLinks{
+    list-style: none;
+}
+
+.navLinks li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.navLinks li a {
+    transition: all 0.3s ease 0s;
+}
+
+.navLinks li a:hover{
+    color: #0088A9;
+}
+
+.contact button{
+    padding: 9px 25px;
+    background-color: rgba(0,136,169,1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.contact button:hover{
+    background-color: rgba(0,136,169,0.8);
+}
+
+main{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+    height: 100vh;
+    background: #21242A;
+    color: #edf0f1;
+}
+
+.formContainer{
+    margin: 50px;
+    border: solid white;
+    border-radius: 5px;
+    width: 350px;
+}
+
+.formContainer * {
+    padding: 5px;
+}
+
+.formContainer form h2{
+    position: relative;
+}
+
+.formContainer form .input{
+    display: flex;
+    flex-direction: column;
+}
+
+.valSubmit input{
+    margin-top: 5px;
+    cursor: pointer;
+    background-color: rgba(0,136,169,1);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#generateReport{
+    padding: 5px;
+    margin-top: 20px;
+    background: #21242A;
+}
+
+/*.valSubmit input{
+    margin-top: 5px;
+    cursor: pointer;
+    background-color: rgba(129, 203, 222,0.2);
+    color: rgba(237, 240, 241, 0.1);
+    font-weight: bold;
+    font-size: 16px;
+}*/
+
+.listContainer{
+    border: solid white;
+    border-radius: 5px;
+    width: 500px;
+}
+
+.listContainer *{
+    padding: 10px 10px 10px 40px;
+}
+
+#success{
+    margin-top: 20px;
+}
+table{
+    margin-top: 20px;
+    width: 800px;
+}
+table, td, th {
+    padding: 10px;
+    border: 2px solid white;
+    border-collapse: collapse;
+    text-align: center;
+}
+td {
+    font-size: 14px;
+}
+th {
+    background: #0088A9;
+    color: #edf0f1;
+}
+
+tr:nth-child(odd){
+    background: slategrey;
+    color: #21242A;
+}
