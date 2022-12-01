@@ -9,7 +9,7 @@ YTC Orange = #f1592a
     padding: 0;
 }
 header{
-    background: #f1592a;
+    background: whitesmoke;
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -29,14 +29,35 @@ li, a, button {
     width: 100%;
 }
 
-.formContainer{
-    margin: 50px 5%;
-    border: 1pt solid black;
-    background: grey;
+/* Form Styling */
+
+body{
+    background: rgb(255, 174, 142);
 }
-form {
+.form-body{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
+    min-height: 80vh;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-top: 50px;
+    border: solid 3px blue;
+}
+
+.form-container{
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    border: solid 2px black;
+    margin: 0 15px;
+    padding: 20px;
+    background: whitesmoke;
+}
+
+.form-header {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500px;
+    color:#f1592a;
+    margin: 5px 3px;
+    border: solid 1pt red;
 }
