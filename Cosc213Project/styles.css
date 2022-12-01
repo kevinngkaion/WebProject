@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,900;1,500&display=swap');
+/*
+YTC Orange = #f1592a
+*/
+* {
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+header{
+    background: #f1592a;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 2.5%;
+}
+
+li, a, button {
+    font-weight: 500;
+    font-size: 15px;
+    color: black;
+    text-decoration: none;
+}
+
+#logo{
+    height: 70px;
+    width: 100%;
+}
+
+.formContainer{
+    margin: 50px 5%;
+    border: 1pt solid black;
+    background: grey;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
