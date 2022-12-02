@@ -1,18 +1,27 @@
-<?php
-session_start();
-$username = filter_input(INPUT_POST, "username",);
-$password = filter_input(INPUT_POST, "password");
-$link = mysqli_connect("localhost", "213admin", "password", "213project");
-$sql = "select * from `auth_users` where username = '{$username}' and password = SHA1('{$password}');";
-$result = mysqli_query($link, $sql);
-if ($resultAssoc = mysqli_fetch_assoc($result)){
-    $id = $resultAssoc['id'];
-    $account_type = $resultAssoc['account_type'];
-    $isadmin = $resultAssoc['is_admin'];
-    $_SESSION['id'] = $id;
-    $_SESSION['accountType'] = $id;
-    $_SESSION['isAdmin'] = $isAdmin;
-    header("location: home.php");
-} else{
-    header("location: login.html");
-}
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include 'head.php' ?>
+        <title>COSC 213 Project: Log In</title>
+    </head>
+    <body>
+        <?php include 'navbar.php' ?>
+
+        <!--Log in Form-->
+        <div class="loginContainer">
+            <form action="verifyUser.php" method="post">
+                <div class="input">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+                <div class="input">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+                <div class="input login">
+                    <input type="submit" name="login" id="login" value="Login">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

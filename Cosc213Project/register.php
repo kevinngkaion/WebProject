@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <?php include 'head.php';?>
         <title>Apply</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
+        <?php include 'navbar.php';?>
         <div class='formContainer'>
             <form name='regForm' action='success.php' method='POST' enctype="multipart/form-data">
                 <h2>Student Enrollment</h2>
