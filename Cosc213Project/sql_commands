@@ -1,0 +1,16 @@
+CREATE TABLE auth_users(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	username VARCHAR(20) UNIQUE NOT NULL,
+	password VARCHAR(40) NOT NULL,
+	fname VARCHAR(20) NOT NULL,
+	lname VARCHAR(40) NOT NULL,
+	mname VARCHAR(20),
+	account_type INT CHECK(account_type>0 AND account_type<4) NOT NULL,
+	is_admin BOOLEAN NOT NULL
+);
+
+INSERT INTO auth_users VALUES (null, 'admin', SHA1('password'), 'Admin', 'Admin', null, 3, true);
+
+UPDATE auth_users SET mname='' WHERE id=1;
+
+select `id`, `account_type`, `is_admin` from `auth_users` where username = 'admin' and password = SHA1('password');
