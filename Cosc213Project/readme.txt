@@ -1,0 +1,1 @@
+account_type values: student = 1, parent = 2, teacher = 3
