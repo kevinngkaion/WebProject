@@ -1,16 +1,62 @@
-CREATE TABLE auth_users(
-	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	username VARCHAR(20) UNIQUE NOT NULL,
-	password VARCHAR(40) NOT NULL,
+CREATE TABLE person(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	type VARCHAR(7) NOT NULL,
 	fname VARCHAR(20) NOT NULL,
-	lname VARCHAR(40) NOT NULL,
-	mname VARCHAR(20),
-	account_type INT CHECK(account_type>0 AND account_type<4) NOT NULL,
-	is_admin BOOLEAN NOT NULL
+	lname VARCHAR(20) NOT NULL,
+	phone VARCHAR(10) NOT NULL,
+	email VARCHAR(40) NOT NULL,
+	home_address VARCHAR(255) NOT NULL,
+	CONSTRAINT person_chk_type CHECK (type IN ('student', 'teacher', 'parent'))
 );
 
-INSERT INTO auth_users VALUES (null, 'admin', SHA1('password'), 'Admin', 'Admin', null, 3, true);
+-- TODO: add FK for prog_id
+CREATE TABLE student(
+	id INT PRIMARY KEY,
+	dob DATE NOT NULL,
+	school VARCHAR(50) NOT NULL,
+	photo VARCHAR(255) NOT NULL,
+	grade VARCHAR(2) NOT NULL,
+	program_id INT NOT NULL,
+	CONSTRAINT student_chk_grade CHECK (grade IN ('k', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'))
+);
 
-UPDATE auth_users SET mname='' WHERE id=1;
+ALTER TABLE student 
+ADD CONSTRAINT student_id_fk FOREIGN KEY(id)
+								REFERENCES person(id);
 
-select `id`, `account_type`, `is_admin` from `auth_users` where username = 'admin' and password = SHA1('password');
+CREATE TABLE parent(
+	id INT PRIMARY KEY,
+	relationship VARCHAR(6),
+	occupation VARCHAR(20),
+	CONSTRAINT parent_chk_rel CHECK (relationship IN ('father', 'mother')),
+	FOREIGN KEY (id) REFERENCES person(id)
+);
+
+CREATE TABLE teacher(
+	id INT PRIMARY KEY,
+	salary DECIMAL NOT NULL,
+	years INT NOT NULL,
+	FOREIGN KEY (id) REFERENCES person(id)
+);
+
+CREATE table auth_users(
+	id INT PRIMARY KEY,
+	username VARCHAR(20) UNIQUE NOT NULL,
+	password VARCHAR(40) NOT NULL,
+	is_admin BOOLEAN NOT NULL,
+	FOREIGN KEY (id) REFERENCES person(id)
+);
+
+-- Inserting admin
+INSERT INTO person VALUES(
+	null,
+	'teacher',
+	'Admin',
+	'Master',
+	'1234567890',
+	'admin@kevin.com',
+	'Planet Earth'
+);
+INSERT INTO auth_users VALUES (1, 'admin', SHA1('password'), true);
+
+select * from `auth_users` where username = 'admin' and password = SHA1('password');
