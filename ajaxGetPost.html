@@ -4,31 +4,89 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edit this template
 -->
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AJAX GET versus POST</title>
-        <meta name="description" content="Kevin Ngkaion's personal website">
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link rel='stylesheet' href='styles.css'>
-        <script src='scripts.js'></script>
-    </head>
-    <body>
-        <header>
-            <h1><a class='title' href="index.html">Kevin Ngkaion</a></h1>
-            <nav>
-                <ul class='navLinks'>
-                    <li><a href="formValidation.html">FORM Validation</a></li>
-                    <li><a href="formReport.php">FORM and REPORT</a></li>
-                    <li><a href="ajaxGetPost.html">AJAX GET versus POST</a></li>
-                    <li><a href="https://www.linkedin.com/in/kevinngkaion/" target="_blank">My LinkedIn Account</a></li>
-                    <li><a href="https://kevinngkaion.wordpress.com/" target="_blank">My WordPress Blog</a></li>
-                    <li><a href="jQueryDemo.html">My JQuery Demo</a></li>
-                    <li><a href="otherProjects.html">My Other Projects</a></li>
-                </ul>
-            </nav>
-            <a class="contact" href="#"><button>Contact</button></a>
-        </header>
-        <main>More content to come!</main>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AJAX GET versus POST</title>
+    <meta name="description" content="Kevin Ngkaion's personal website">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='styles.css'>
+    <script src='scripts.js'></script>
+</head>
+
+<body>
+    <header>
+        <h1><a class='title' href="index.html">Kevin Ngkaion</a></h1>
+        <nav>
+            <ul class='navLinks'>
+                <li><a href="formValidation.html">FORM Validation</a></li>
+                <li><a href="formReport.php">FORM and REPORT</a></li>
+                <li><a href="ajaxGetPost.html">AJAX GET versus POST</a></li>
+                <li><a href="https://www.linkedin.com/in/kevinngkaion/" target="_blank">My LinkedIn Account</a></li>
+                <li><a href="https://kevinngkaion.wordpress.com/" target="_blank">My WordPress Blog</a></li>
+                <li><a href="jQueryDemo.html">My JQuery Demo</a></li>
+                <li><a href="otherProjects.html">My Other Projects</a></li>
+            </ul>
+        </nav>
+        <a class="contact" href="#"><button>Contact</button></a>
+    </header>
+    <main>
+        <div class="container">
+            <div class="innerContainer">
+                <div class='formContainer'>
+                    <form name='ajaxResponses' action='' method='POST'>
+                        <h3>AJAX Server Responses</h3>
+                        <div class='input valSubmit'>
+                            <button type="button" onclick="loadDoc()">Responses from Server</button>
+                        </div>
+                    </form>
+                </div>
+        
+                <div class="responseContainer">
+                    <div id="ready1"></div>
+                    <div id="ready2"></div>
+                    <div id="ready3"></div>
+                    <div id="ready4"></div>
+                    <div id="demo"></div>
+                </div>
+                
+            </div>
+            <div class="innerContainer">
+                <div class='formContainer'>
+                    <form name='postEmail' action='' method='POST'>
+                        <h3>Method: POST an email to a database</h3>
+                        <div class="input" id="post" style="color: lightgreen"></div>
+                        <div class="input">
+                            <label for="postEmail">Send your email to the database:</label>
+                            <input type="email" id="postEmail" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class='input valSubmit'>
+                            <input type="button" onclick="postToDB()" value="Send email to database">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="innterContainer">
+                <div class='formContainer'>
+                    <form name='postEmail' action='' method='GET'>
+                        <h3>Method: GET the same data from the database</h3>
+                        <div class="input" id="getResponse" style="color: lightgreen"></div>
+                        <div class="input">
+                            <label for="getEmail">Get your email to the database:</label>
+                            <input type="text" id="getEmail" placeholder="Enter your email">
+                        </div>
+                        <div class='input valSubmit'>
+                            <input type="button" onclick="getFromDB()" value="Get email from database">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+</body>
+
 </html>

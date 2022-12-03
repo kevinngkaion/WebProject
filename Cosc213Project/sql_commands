@@ -59,4 +59,4 @@ INSERT INTO person VALUES(
 );
 INSERT INTO auth_users VALUES (1, 'admin', SHA1('password'), true);
 
-select * from `auth_users` where username = 'admin' and password = SHA1('password');
+select `id`, `is_admin` from `auth_users` where username = 'admin' and password = SHA1('password');
