@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        <?php include 'navbar.php'; ?>
+        <?php include 'navin.php'; ?>
 
         <!--Register button-->
         <div class="container">

@@ -5,7 +5,7 @@
         <title>COSC 213 Project: Log In</title>
     </head>
     <body>
-        <?php include 'navbar.php' ?>
+        <?php include 'navin.php' ?>
 
         <!--Log in Form-->
         <div class="loginContainer">
