@@ -1,0 +1,6 @@
+Simplify reg form to essential fields
+Connect reg form to DB
+Create View applications button on home screen
+Create table to show applicants with accept button on right which will have a value of person.id
+Pass person.id through post request form
+Save applicant info into tables
