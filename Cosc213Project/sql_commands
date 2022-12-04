@@ -1,3 +1,6 @@
+-- NEED TO SET THIS ON THE LIVE SERVER DB
+SET GLOBAL information_schema_stats_expiry=0;
+
 CREATE TABLE person(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	type VARCHAR(7) NOT NULL,
@@ -16,12 +19,21 @@ CREATE TABLE student(
 	photo VARCHAR(255) NOT NULL,
 	grade VARCHAR(2) NOT NULL,
 	program_id INT NOT NULL,
-	CONSTRAINT student_chk_grade CHECK (grade IN ('k', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'))
+	CONSTRAINT student_chk_grade CHECK (grade IN ('k', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 'u'));
 );
 
 ALTER TABLE student 
 ADD CONSTRAINT student_id_fk FOREIGN KEY(id)
 								REFERENCES person(id);
+ALTER TABLE student
+ADD column parent1 INT NOT NULL
+ALTER TABLE student
+ADD column parent2 INT NOT NULL;
+ALTER TABLE student
+ADD CONSTRAINT student_p1_fk FOREIGN KEY (parent1) REFERENCES parent(id);
+ALTER TABLE student
+ADD CONSTRAINT student_p2_fk FOREIGN KEY (parent2) REFERENCES parent(id);
+
 
 CREATE TABLE parent(
 	id INT PRIMARY KEY,
@@ -72,9 +84,11 @@ ALTER TABLE student
 ADD CONSTRAINT student_progId_fk
 FOREIGN KEY (program_id) REFERENCES program(id);
 
--- Add status column to student table
+-- Add status column to student table and add check constraint
 ALTER TABLE student
 ADD column status VARCHAR(8) NOT NULL;
+ALTER TABLE student
+ADD CONSTRAINT student_chk_status CHECK(status IN('active', 'pending', 'inactive'));
 
 -- Insert programs
 	INSERT INTO program VALUES (1, 'NYKE Elite Basketball Camp', 1000);
@@ -91,4 +105,13 @@ CREATE TABLE student_parent(
 );
 
 INSERT INTO `person` (type, fname, lname, phone, email, home_address)
-VALUES ('teacher', '')
+VALUES ('coach', 'LeBron', 'James', 2306062323, 'lebronjames@nyke.com', 'Big mansion');
+
+INSERT INTO auth_users
+VALUES (2, 'lebron', SHA1('james'), false);
+
+SELECT p.*, s.dob, s.school, s.grade, s.program_id, p2.fname, pa.relationship
+FROM person p, student s, parent pa, person p2
+WHERE p.id = 3 and
+	p.id = s.id and pa.id = s.parent1 and
+	p2.id = s.parent1;

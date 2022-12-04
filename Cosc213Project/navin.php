@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
     <div class="container-fluid justify-content-between mx-5">
         <!--Brand Logo-->
-        <a class="navbar-brand" href="http://yourtutorialcenter.com" target="_blank">
+        <a class="navbar-brand" href="index.php">
             <img class="img-fluid" style="max-height: 75px" id="logo" src="https://static.wixstatic.com/media/6f1f67_ed88caf0998e4af08d4bc45c87755338~mv2.png/v1/fill/w_322,h_170,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ytc-logo.png" alt="ytc-logo.png" fetchpriority="high">
         </a>
         <a href="login.php" class="navbar-item btn btn-primary">Login</a>
