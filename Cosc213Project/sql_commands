@@ -6,10 +6,9 @@ CREATE TABLE person(
 	phone VARCHAR(10) NOT NULL,
 	email VARCHAR(40) NOT NULL,
 	home_address VARCHAR(255) NOT NULL,
-	CONSTRAINT person_chk_type CHECK (type IN ('student', 'teacher', 'parent'))
+	CONSTRAINT person_chk_type CHECK (type IN ('student', 'coach', 'parent'))
 );
 
--- TODO: add FK for prog_id
 CREATE TABLE student(
 	id INT PRIMARY KEY,
 	dob DATE NOT NULL,
@@ -32,7 +31,7 @@ CREATE TABLE parent(
 	FOREIGN KEY (id) REFERENCES person(id)
 );
 
-CREATE TABLE teacher(
+CREATE TABLE coach(
 	id INT PRIMARY KEY,
 	salary DECIMAL NOT NULL,
 	years INT NOT NULL,
@@ -50,7 +49,7 @@ CREATE table auth_users(
 -- Inserting admin
 INSERT INTO person VALUES(
 	null,
-	'teacher',
+	'coach',
 	'Admin',
 	'Master',
 	'1234567890',
@@ -60,3 +59,36 @@ INSERT INTO person VALUES(
 INSERT INTO auth_users VALUES (1, 'admin', SHA1('password'), true);
 
 select `id`, `is_admin` from `auth_users` where username = 'admin' and password = SHA1('password');
+
+-- Creating program table
+CREATE TABLE program(
+	id INT PRIMARY KEY,
+	name VARCHAR(40) NOT NULL,
+	cost DECIMAL NOT NULL
+);
+
+-- Add FK to student
+ALTER TABLE student
+ADD CONSTRAINT student_progId_fk
+FOREIGN KEY (program_id) REFERENCES program(id);
+
+-- Add status column to student table
+ALTER TABLE student
+ADD column status VARCHAR(8) NOT NULL;
+
+-- Insert programs
+	INSERT INTO program VALUES (1, 'NYKE Elite Basketball Camp', 1000);
+	INSERT INTO program VALUES (2, 'Adodas Predator Soccer Academy', 999.99);
+	INSERT INTO program VALUES (3, 'Lion Woods Pro Golf Academy', 1200);
+	INSERT INTO program VALUES (4, 'Shaun Black School of Big Air', 850);
+
+-- Create student-parent
+CREATE TABLE student_parent(
+	parentID INT NOT NULL,
+	studentID INT NOT NULL,
+	CONSTRAINT stupar_parent_id_fk FOREIGN KEY (parentID) REFERENCES parent(id),
+	CONSTRAINT stupar_student_id_fk FOREIGN KEY (studentID) REFERENCES student(id)
+);
+
+INSERT INTO `person` (type, fname, lname, phone, email, home_address)
+VALUES ('teacher', '')
