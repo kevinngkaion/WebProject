@@ -24,9 +24,6 @@ if (isset($_POST['submit'])){
     $sID = $resultRow[0];
     $fID = $sID + 1;
     $mID = $fID +1;
-    // $fID = 10;
-    // $mID = 11;
-    // $sID = 9;
 
     //insert persons
     $personSQL = "INSERT INTO `person` (type, fname, lname, phone, email) 

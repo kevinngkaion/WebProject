@@ -1,4 +1,2 @@
-Create View applications button on home screen
-Create table to show applicants with accept button on right which will have a value of person.id
-Pass person.id through post request form
-Save applicant info into tables
+Create view current students
+Create button to create new users for the system

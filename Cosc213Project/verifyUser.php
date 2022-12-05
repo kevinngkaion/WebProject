@@ -13,5 +13,5 @@ if ($resultAssoc = mysqli_fetch_assoc($result)){
     $_SESSION['isAdmin'] = $isAdmin;
     header("location: home.php");
 } else{
-    header("location: login.html");
+    header("location: login.php");
 }

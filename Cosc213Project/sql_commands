@@ -115,3 +115,13 @@ FROM person p, student s, parent pa, person p2
 WHERE p.id = 3 and
 	p.id = s.id and pa.id = s.parent1 and
 	p2.id = s.parent1;
+
+SELECT p.id, p.fname, p.lname, p.phone, p.email, s.dob, s.school, s.photo, s.grade
+FROM person p, student s
+WHERE p.id = s.id AND p.id IN (s.id);
+
+UPDATE student SET status = 'active' WHERE id = 3;
+
+SELECT * FROM person WHERE id NOT IN(SELECT id FROM auth_users) ORDER BY id, type;
+
+INSERT INTO person VALUES (null, 'coach', 'Leo', 'Messi', '1010101010', 'goat@futbol.com')

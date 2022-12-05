@@ -6,11 +6,7 @@
     } else {
         $id = $_SESSION['id'];
         // check if user is admin
-        if($_SESSION['isAdmin'] == 1){
-            $isAdmin = 'You have admin privilages!';
-        } else {
-            $isAdmin = 'You DO NOT have admin privilages you puny human';
-        }
+        $isAdmin = $_SESSION['isAdmin'];
         $link = mysqli_connect("localhost", "213admin", "password", "213project");
         // query primary info on person
         $sqlPerson = "SELECT * FROM `person` WHERE id = {$id};";
@@ -23,6 +19,7 @@
         $type = $personInfoAssoc['type'];
         $lname = $personInfoAssoc['lname'];
         $fname = $personInfoAssoc['fname'];
+        $_SESSION['type'] = $type;
     }
 ?>
 
@@ -39,10 +36,28 @@
                 <h1 class="primary">
                     <?php echo "Welcome {$fname} {$lname}!"; ?>
                 </h1>
-                <h1 class="alert">
-                    <?php echo $isAdmin; ?>
-                </h1>
             </div>
+        </div>
+
+        <div class="container d-flex justify-content-between pt-3">
+            <?php
+            if($isAdmin){
+                echo "<button class='btn btn-outline-primary' type='button' onclick='showApplications()'>View Pending Registrations</button>";
+                echo "<button class='btn btn-outline-danger' type='button' onclick='showCurrentStudents()'>View Current Students</button>";
+                echo "<button class='btn btn-outline-warning' type='button' onclick='showExpiredStudents()'>View Inactive Students</button>";
+                echo "<button class='btn btn-outline-dark' type='button' onclick='showPeople()'>Create New User</button>";
+            }
+            if($type == 'coach' && !$isAdmin){
+                echo "<button class='btn btn-outline-danger' type='button' onclick='showCurrentStudents()'>View Current Students</button>";
+            }
+            if($type == 'student'){
+                echo "<button class='btn btn-outline-danger' type='button' onclick='showCurrentStudents()'>View Your Information</button>";
+            }
+            ?>
+        </div>
+
+        <div class="container py-3 d-none" id="output">
+
         </div>
     </body>
 </html>
