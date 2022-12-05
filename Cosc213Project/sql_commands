@@ -124,4 +124,5 @@ UPDATE student SET status = 'active' WHERE id = 3;
 
 SELECT * FROM person WHERE id NOT IN(SELECT id FROM auth_users) ORDER BY id, type;
 
-INSERT INTO person VALUES (null, 'coach', 'Leo', 'Messi', '1010101010', 'goat@futbol.com')
+INSERT INTO person VALUES (null, 'coach', 'Leo', 'Messi', '1010101010', 'goat@futbol.com');
+INSERT INTO person VALUES (null, 'coach', 'Shaun', 'White', '0987654321', 'imshaun@white.com'), (null, 'coach', 'Happy', 'Gilmore', '5555555555', 'joker@gilmore.com');

@@ -8,18 +8,18 @@
         <?php include 'navin.php' ?>
 
         <!--Log in Form-->
-        <div class="loginContainer">
-            <form action="verifyUser.php" method="post">
-                <div class="input">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" required>
+        <div class="container mt-5 d-flex justify-content-around">
+            <form class='border border-3 border-rounded-2' action="verifyUser.php" method="post">
+                <div class="pt-3 px-3 mb-3">
+                    <label class='form-label' for="username">Username:</label>
+                    <input class='form-control' type="text" name="username" id="username" required>
                 </div>
-                <div class="input">
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" required>
+                <div class="px-3 mb-3">
+                    <label class='form-label' for="password">Password:</label>
+                    <input class='form-control' type="password" name="password" id="password" required>
                 </div>
-                <div class="input login">
-                    <input type="submit" name="login" id="login" value="Login">
+                <div class="pb-3 px-3 mb-3">
+                    <input class='btn btn-primary form-control' type="submit" name="login" id="login" value="Login">
                 </div>
             </form>
         </div>
