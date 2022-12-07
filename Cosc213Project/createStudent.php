@@ -40,7 +40,7 @@ if (isset($_POST['submit'])){
                 //insert the student parent pair into stu_par
                 $sql = "INSERT INTO stu_par(stu_id, par_id) VALUES ({$row[0]}, {$row[1]});";
                 if(mysqli_query($link, $sql)){
-                    header('location: home.php?=success');
+                    header('location: home.php?status=success');
                 }
             }
         }

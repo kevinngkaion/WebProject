@@ -30,7 +30,11 @@
         <title>COSC 213 Project: Home</title>
     </head>
     <body>
-        <?php include 'navout.php'; ?>
+        <?php include 'navout.php';
+        if(isSet($_GET['status'])){
+            echo "<div class='alert alert-success text-center' role='alert'>You have successfully added a child</div>";
+        }
+        ?>
         <div class="container">
             <div class="text-center col mt-5">
                 <h1 class="primary">

@@ -42,10 +42,10 @@ if(!$_SESSION['id']){
         <th scope="col">School</th>
         <th scope="col">Grade</th>
         <?php
-            if($_SESSION['type'] != 'coach'){
-            echo "<th scope='col'>";
-            if($_SESSION['type'] == 'parent'){ echo "Status";} else {echo "Action";}
-            echo "</th>";
+            if($_SESSION['isAdmin']){
+                echo "<th scope='col'>Action</th>";
+            } else if($_SESSION['type'] != 'parent'){
+            echo "<th scope='col'>Status</th>";
             }
         ?>
     </tr>
@@ -58,9 +58,9 @@ if(!$_SESSION['id']){
                 for ($i=1; $i<count($row);$i++){
                     echo "<td> {$row[$i]} </td>";
                 }
-                if($_SESSION['type'] != 'parent' && $_SESSION['type' != 'coach']){
+                if($_SESSION['isAdmin']){
                     print "<td><button class='btn {$buttonColor}' onclick="; print "updateStudent('{$newStatus}',$stuID,'{$status}')>"; echo "{$buttonTxt}</button></td>";
-                }
+                }`
                 echo "</tr>";
             }
         ?>
