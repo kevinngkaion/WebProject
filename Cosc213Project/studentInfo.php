@@ -60,7 +60,7 @@ if(!$_SESSION['id']){
                 }
                 if($_SESSION['isAdmin']){
                     print "<td><button class='btn {$buttonColor}' onclick="; print "updateStudent('{$newStatus}',$stuID,'{$status}')>"; echo "{$buttonTxt}</button></td>";
-                }`
+                }
                 echo "</tr>";
             }
         ?>
