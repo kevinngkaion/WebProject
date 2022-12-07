@@ -6,7 +6,11 @@
     </head>
 
     <body>
-        <?php include 'navin.php'; ?>
+        <?php include 'navin.php';
+        if(isSet($_GET['status'])){
+            echo "<div class='alert alert-success text-center' role='alert'>Your account has been created!</div>";
+        }
+        ?>
 
         <!--Register button-->
         <div class="container">

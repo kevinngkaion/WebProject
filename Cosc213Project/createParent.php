@@ -29,7 +29,7 @@ if (isset($_POST['submit'])){
         if(mysqli_query($link, $sql)){
             $sql = "INSERT INTO auth_users VALUES ($id, '$username', SHA1('$password'), false);";
             if(mysqli_query($link, $sql)){
-                header('location: index.php?=success');
+                header('location: index.php?status=success');
             }
         }
     }
