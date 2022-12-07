@@ -41,6 +41,9 @@
 
         <div class="container d-flex justify-content-between pt-3">
             <?php
+            if (isset($_GET['exists'])){
+            echo '<div class="alert alert-danger text-center" role="alert">Sorry. This email already exists. Please try again.</div>';
+            }
             if($isAdmin){
                 echo "<button class='btn btn-outline-primary' type='button' onclick='showApplications()'>View Pending Registrations</button>";
                 echo "<button class='btn btn-outline-danger' type='button' onclick='showCurrentStudents()'>View Current Students</button>";
@@ -52,6 +55,10 @@
             }
             if($type == 'student'){
                 echo "<button class='btn btn-outline-danger' type='button' onclick='showCurrentStudents()'>View Your Information</button>";
+            }
+            if($type == 'parent'){
+                echo "<button class='btn btn-outline-primary' type='button' onclick='showChildren()'>View Children</button>";
+                echo "<button class='btn btn-outline-dark' type='button' onclick='registerChild()'>Register Your Child</button>";
             }
             ?>
         </div>

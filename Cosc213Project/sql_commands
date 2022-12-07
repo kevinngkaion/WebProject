@@ -126,3 +126,42 @@ SELECT * FROM person WHERE id NOT IN(SELECT id FROM auth_users) ORDER BY id, typ
 
 INSERT INTO person VALUES (null, 'coach', 'Leo', 'Messi', '1010101010', 'goat@futbol.com');
 INSERT INTO person VALUES (null, 'coach', 'Shaun', 'White', '0987654321', 'imshaun@white.com'), (null, 'coach', 'Happy', 'Gilmore', '5555555555', 'joker@gilmore.com');
+
+CREATE VIEW table_constraints
+AS
+SELECT table_name, constraint_name, constraint_type
+FROM information_schema.table_constraints
+ORDER BY table_name;
+
+<--Modify the tables. Remove FK and PK. Add new PK column. link FK to new thing -->
+ALTER TABLE auth_users
+DROP CONSTRAINT auth_users_ibfk_1,
+DROP PRIMARY KEY,
+ADD column user_id INT PRIMARY KEY AUTO_INCREMENT,
+ADD CONSTRAINT auth_users_idfk FOREIGN KEY (id) REFERENCES person(id);
+
+ALTER TABLE student
+DROP CONSTRAINT student_id_fk;
+ALTER TABLE student
+DROP PRIMARY KEY;
+ALTER TABLE student
+ADD column stu_id INT PRIMARY KEY AUTO_INCREMENT,
+ADD CONSTRAINT student_id_fk FOREIGN KEY (id) REFERENCES person(id);
+
+ALTER TABLE parent
+DROP CONSTRAINT parent_ibfk_1,
+DROP PRIMARY KEY,
+ADD column parent_id INT PRIMARY KEY AUTO_INCREMENT,
+ADD CONSTRAINT parent_id_fk FOREIGN KEY (id) REFERENCES person(id);
+
+ALTER TABLE student
+DROP CONSTRAINT student_p1_fk,
+DROP CONSTRAINT student_p2_fk,
+ADD CONSTRAINT stu_p1_fk FOREIGN KEY (parent1) REFERENCES parent(parent_id),
+ADD CONSTRAINT stu_p2_fk FOREIGN KEY (parent2) REFERENCES parent(parent_id);
+
+CREATE TABLE stu_par(
+stu_id INT NOT NULL,
+par_id INT NOT NULL,
+FOREIGN KEY (stu_id) REFERENCES student(stu_id),
+FOREIGN KEY (par_id) REFERENCES parent(parent_id));

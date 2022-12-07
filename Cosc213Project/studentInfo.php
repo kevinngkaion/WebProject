@@ -7,6 +7,8 @@ if(!$_SESSION['id']){
     // check what type of get request
     if ($_SESSION['type'] == 'student'){
         $sql = "SELECT p.id, p.fname, p.lname, p.phone, p.email, s.dob, s.school, s.grade FROM person p, student s WHERE p.id = s.id AND p.id = $userID;";
+    } else if ($_SESSION['type'] == 'parent') {
+        $sql = $sql = "SELECT p.id, p.fname, p.lname, p.phone, p.email, s.dob, s.school, s.grade, s.status FROM person p, student s, stu_par sp, parent pa WHERE p.id = s.id AND pa.parent_id = sp.par_id AND s.stu_id = sp.stu_id AND pa.id = $userID;";
     } else {
         $status = filter_input(INPUT_GET, 'status');
         if($status == 'pending'){
@@ -39,7 +41,13 @@ if(!$_SESSION['id']){
         <th scope="col">DOB</th>
         <th scope="col">School</th>
         <th scope="col">Grade</th>
-        <th scope="col">Action</th>
+        <?php
+            if($_SESSION['type'] != 'coach'){
+            echo "<th scope='col'>";
+            if($_SESSION['type'] == 'parent'){ echo "Status";} else {echo "Action";}
+            echo "</th>";
+            }
+        ?>
     </tr>
     </thead>
     <tbody>
@@ -50,7 +58,9 @@ if(!$_SESSION['id']){
                 for ($i=1; $i<count($row);$i++){
                     echo "<td> {$row[$i]} </td>";
                 }
-                print "<td><button class='btn {$buttonColor}' onclick="; print "updateStudent('{$newStatus}',$stuID,'{$status}')>"; echo "{$buttonTxt}</button></td>";
+                if($_SESSION['type'] != 'parent' && $_SESSION['type' != 'coach']){
+                    print "<td><button class='btn {$buttonColor}' onclick="; print "updateStudent('{$newStatus}',$stuID,'{$status}')>"; echo "{$buttonTxt}</button></td>";
+                }
                 echo "</tr>";
             }
         ?>

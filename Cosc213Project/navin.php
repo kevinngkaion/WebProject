@@ -1,5 +1,5 @@
 <!--NavBar-->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container-fluid justify-content-between mx-5">
         <!--Brand Logo-->
         <a class="navbar-brand" href="index.php">

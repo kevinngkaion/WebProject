@@ -9,7 +9,7 @@
 
         <!--Log in Form-->
         <div class="container mt-5 d-flex justify-content-around">
-            <form class='border border-3 border-rounded-2' action="verifyUser.php" method="post">
+            <form class='border border-rounded shadow' action="verifyUser.php" method="post">
                 <div class="pt-3 px-3 mb-3">
                     <label class='form-label' for="username">Username:</label>
                     <input class='form-control' type="text" name="username" id="username" required>

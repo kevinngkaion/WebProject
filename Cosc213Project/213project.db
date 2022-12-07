@@ -27,9 +27,9 @@ CREATE TABLE `auth_users` (
   `username` varchar(20) NOT NULL,
   `password` varchar(40) NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
-  CONSTRAINT `auth_users_ibfk_1` FOREIGN KEY (`id`) REFERENCES `person` (`id`)
+  KEY `auth_users_idfk` (`id`),
+  CONSTRAINT `auth_users_idfk` FOREIGN KEY (`id`) REFERENCES `person` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,33 +39,8 @@ CREATE TABLE `auth_users` (
 
 LOCK TABLES `auth_users` WRITE;
 /*!40000 ALTER TABLE `auth_users` DISABLE KEYS */;
-INSERT INTO `auth_users` VALUES (1,'admin','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8',1),(2,'lebron','474ba67bdb289c6263b36dfd8a7bed6c85b04943',0),(4,'OldBenKenobi','eabc0281e38d8b6a0471d05462ddea127ee681d6',0),(22,'JohnDoe','841e0a638d135045792ee9ec96fd666de4fbb026',0),(25,'SnoopDogg','b01d814746358963e3069dddeab112c2834ad6ae',0);
+INSERT INTO `auth_users` VALUES (1,'admin','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8',1),(2,'lebron','474ba67bdb289c6263b36dfd8a7bed6c85b04943',0);
 /*!40000 ALTER TABLE `auth_users` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `coach`
---
-
-DROP TABLE IF EXISTS `coach`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `coach` (
-  `id` int NOT NULL,
-  `salary` decimal(10,0) NOT NULL,
-  `years` int NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `coach_ibfk_1` FOREIGN KEY (`id`) REFERENCES `person` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `coach`
---
-
-LOCK TABLES `coach` WRITE;
-/*!40000 ALTER TABLE `coach` DISABLE KEYS */;
-/*!40000 ALTER TABLE `coach` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,10 +53,12 @@ DROP TABLE IF EXISTS `parent`;
 CREATE TABLE `parent` (
   `id` int NOT NULL,
   `relationship` varchar(6) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `parent_ibfk_1` FOREIGN KEY (`id`) REFERENCES `person` (`id`),
+  `parent_id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`parent_id`),
+  KEY `parent_id_fk` (`id`),
+  CONSTRAINT `parent_id_fk` FOREIGN KEY (`id`) REFERENCES `person` (`id`),
   CONSTRAINT `parent_chk_rel` CHECK ((`relationship` in (_utf8mb4'father',_utf8mb4'mother')))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +67,6 @@ CREATE TABLE `parent` (
 
 LOCK TABLES `parent` WRITE;
 /*!40000 ALTER TABLE `parent` DISABLE KEYS */;
-INSERT INTO `parent` VALUES (4,'father'),(5,'mother'),(23,'father'),(24,'mother'),(26,'father'),(27,'mother');
 /*!40000 ALTER TABLE `parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,8 +85,9 @@ CREATE TABLE `person` (
   `phone` varchar(10) NOT NULL,
   `email` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `person_email_u` (`email`),
   CONSTRAINT `person_chk_type` CHECK ((`type` in (_utf8mb4'student',_utf8mb4'coach',_utf8mb4'parent')))
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +96,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'coach','Kevin','Ngkaion','1234567890','admin@kevin.com'),(2,'coach','LeBron','James','2306062323','lebronjames@nyke.com'),(3,'student','Obi Wan','Kenobi','1234567890','obiwankenobi@jedicouncil.org'),(4,'parent','Old Ben','Kenobi','987654310','obi_dad@starwars.com'),(5,'parent','Old Wanda','Kenobi','7891234560','wanda@mommakenobi.com'),(22,'student','John','Doe','1111111111','jdoe@person.com'),(23,'parent','James','Doe','2222222222','jimdoe@person.com'),(24,'parent','Jane','Doe','3333333333','doejane@person.com'),(25,'student','Snoop','Dogg','4204204200','snoop@doog.com'),(26,'parent','Papa','Snoop','1122334455','papa@dogg.com'),(27,'parent','Mama','Snoop','6677889900','mama@doog.com'),(28,'coach','Leo','Messi','1010101010','goat@futbol.com'),(29,'coach','Shaun','White','0987654321','imshaun@white.com'),(30,'coach','Happy','Gilmore','5555555555','joker@gilmore.com'),(31,'student','Frodo','Baggins','7777777777','theringbearer@lotr.com'),(32,'parent','Sauron','The Evil','6666666666','sauron@eye.com'),(33,'parent','Galadriel','Elven Queen','4444444444','crazyqueen@lotr.com');
+INSERT INTO `person` VALUES (1,'coach','Kevin','Ngkaion','1234567890','admin@kevin.com'),(2,'coach','LeBron','James','2306062323','lebronjames@nyke.com'),(28,'coach','Leo','Messi','1010101010','goat@futbol.com'),(29,'coach','Shaun','White','0987654321','imshaun@white.com'),(30,'coach','Happy','Gilmore','5555555555','joker@gilmore.com');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,6 +126,32 @@ INSERT INTO `program` VALUES (1,'NYKE Elite Basketball Camp',1000),(2,'Adodas Pr
 UNLOCK TABLES;
 
 --
+-- Table structure for table `stu_par`
+--
+
+DROP TABLE IF EXISTS `stu_par`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `stu_par` (
+  `stu_id` int NOT NULL,
+  `par_id` int NOT NULL,
+  KEY `stu_id` (`stu_id`),
+  KEY `par_id` (`par_id`),
+  CONSTRAINT `stu_par_ibfk_1` FOREIGN KEY (`stu_id`) REFERENCES `student` (`stu_id`),
+  CONSTRAINT `stu_par_ibfk_2` FOREIGN KEY (`par_id`) REFERENCES `parent` (`parent_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `stu_par`
+--
+
+LOCK TABLES `stu_par` WRITE;
+/*!40000 ALTER TABLE `stu_par` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stu_par` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `student`
 --
 
@@ -159,23 +162,18 @@ CREATE TABLE `student` (
   `id` int NOT NULL,
   `dob` date NOT NULL,
   `school` varchar(50) NOT NULL,
-  `photo` varchar(255) NOT NULL,
   `grade` varchar(2) NOT NULL,
   `program_id` int NOT NULL,
   `status` varchar(8) NOT NULL,
-  `parent1` int NOT NULL,
-  `parent2` int NOT NULL,
-  PRIMARY KEY (`id`),
+  `stu_id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`stu_id`),
   KEY `student_progId_fk` (`program_id`),
-  KEY `student_p1_fk` (`parent1`),
-  KEY `student_p2_fk` (`parent2`),
+  KEY `student_id_fk` (`id`),
   CONSTRAINT `student_id_fk` FOREIGN KEY (`id`) REFERENCES `person` (`id`),
-  CONSTRAINT `student_p1_fk` FOREIGN KEY (`parent1`) REFERENCES `parent` (`id`),
-  CONSTRAINT `student_p2_fk` FOREIGN KEY (`parent2`) REFERENCES `parent` (`id`),
   CONSTRAINT `student_progId_fk` FOREIGN KEY (`program_id`) REFERENCES `program` (`id`),
   CONSTRAINT `student_chk_grade` CHECK ((`grade` in (_utf8mb4'k',_utf8mb4'1',_utf8mb4'2',_utf8mb4'3',_utf8mb4'4',_utf8mb4'5',_utf8mb4'6',_utf8mb4'7',_utf8mb4'8',_utf8mb4'9',_utf8mb4'10',_utf8mb4'11',_utf8mb4'12',_utf8mb4'u'))),
   CONSTRAINT `student_chk_status` CHECK ((`status` in (_utf8mb4'active',_utf8mb4'pending',_utf8mb4'inactive')))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,35 +182,40 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (3,'2022-12-14','Jedi Academy','sample photo','U',4,'inactive',4,5),(22,'2022-01-03','The School','sample photo','3',2,'active',23,24),(25,'1420-04-20','High School','sample photo','U',1,'pending',26,27);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `student_parent`
+-- Temporary view structure for view `table_constraints`
 --
 
-DROP TABLE IF EXISTS `student_parent`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+DROP TABLE IF EXISTS `table_constraints`;
+/*!50001 DROP VIEW IF EXISTS `table_constraints`*/;
+SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `student_parent` (
-  `parentID` int NOT NULL,
-  `studentID` int NOT NULL,
-  KEY `stupar_parent_id_fk` (`parentID`),
-  KEY `stupar_student_id_fk` (`studentID`),
-  CONSTRAINT `stupar_parent_id_fk` FOREIGN KEY (`parentID`) REFERENCES `parent` (`id`),
-  CONSTRAINT `stupar_student_id_fk` FOREIGN KEY (`studentID`) REFERENCES `student` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+/*!50001 CREATE VIEW `table_constraints` AS SELECT 
+ 1 AS `table_name`,
+ 1 AS `constraint_name`,
+ 1 AS `constraint_type`*/;
+SET character_set_client = @saved_cs_client;
 
 --
--- Dumping data for table `student_parent`
+-- Final view structure for view `table_constraints`
 --
 
-LOCK TABLES `student_parent` WRITE;
-/*!40000 ALTER TABLE `student_parent` DISABLE KEYS */;
-/*!40000 ALTER TABLE `student_parent` ENABLE KEYS */;
-UNLOCK TABLES;
+/*!50001 DROP VIEW IF EXISTS `table_constraints`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`213admin`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `table_constraints` AS select `information_schema`.`table_constraints`.`TABLE_NAME` AS `table_name`,`information_schema`.`table_constraints`.`CONSTRAINT_NAME` AS `constraint_name`,`information_schema`.`table_constraints`.`CONSTRAINT_TYPE` AS `constraint_type` from `information_schema`.`TABLE_CONSTRAINTS` `table_constraints` order by `information_schema`.`table_constraints`.`TABLE_NAME` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -223,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-05  3:39:02
+-- Dump completed on 2022-12-07 14:47:35

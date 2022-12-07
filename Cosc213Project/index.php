@@ -11,7 +11,7 @@
         <!--Register button-->
         <div class="container">
             <div class="text-center col mt-5">
-                <a href="register.php" class="btn btn-primary btn-lg">Register Now!</a>
+                <a href="formReg.php" class="btn btn-primary btn-lg">Register Now!</a>
             </div>
         </div>
 

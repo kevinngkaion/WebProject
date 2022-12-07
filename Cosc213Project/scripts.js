@@ -55,6 +55,31 @@ function showPeople(){
     xhttp.send();
 }
 
+function registerChild(){
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let div = document.getElementById("output");
+            div.innerHTML = this.responseText;
+            div.classList.remove('d-none');
+        }
+    };
+    xhttp.open("GET", "formStudent.php", true);
+    xhttp.send();
+}
+
+function showChildren(){
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let div = document.getElementById("output");
+            div.innerHTML = this.responseText;
+            div.classList.remove('d-none');
+        }
+    };
+    xhttp.open("GET", "studentInfo.php", true);
+    xhttp.send();
+}
 
 //DataBase Manipulation
 function createAccount(personID){
