@@ -39,7 +39,7 @@ CREATE TABLE `auth_users` (
 
 LOCK TABLES `auth_users` WRITE;
 /*!40000 ALTER TABLE `auth_users` DISABLE KEYS */;
-INSERT INTO `auth_users` VALUES (1,'admin','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8',1),(2,'lebron','474ba67bdb289c6263b36dfd8a7bed6c85b04943',0);
+INSERT INTO `auth_users` VALUES (1,'admin','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8',1),(2,'lebron','474ba67bdb289c6263b36dfd8a7bed6c85b04943',0),(101,'vader','f4c6843e634b2bc926f3bd0736a840194b28b7ba',0);
 /*!40000 ALTER TABLE `auth_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `parent` (
   KEY `parent_id_fk` (`id`),
   CONSTRAINT `parent_id_fk` FOREIGN KEY (`id`) REFERENCES `person` (`id`),
   CONSTRAINT `parent_chk_rel` CHECK ((`relationship` in (_utf8mb4'father',_utf8mb4'mother')))
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `parent` (
 
 LOCK TABLES `parent` WRITE;
 /*!40000 ALTER TABLE `parent` DISABLE KEYS */;
+INSERT INTO `parent` VALUES (101,'father',39);
 /*!40000 ALTER TABLE `parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +88,7 @@ CREATE TABLE `person` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `person_email_u` (`email`),
   CONSTRAINT `person_chk_type` CHECK ((`type` in (_utf8mb4'student',_utf8mb4'coach',_utf8mb4'parent')))
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +97,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'coach','Kevin','Ngkaion','1234567890','admin@kevin.com'),(2,'coach','LeBron','James','2306062323','lebronjames@nyke.com'),(28,'coach','Leo','Messi','1010101010','goat@futbol.com'),(29,'coach','Shaun','White','0987654321','imshaun@white.com'),(30,'coach','Happy','Gilmore','5555555555','joker@gilmore.com');
+INSERT INTO `person` VALUES (1,'coach','Kevin','Ngkaion','1234567890','admin@kevin.com'),(2,'coach','LeBron','James','2306062323','lebronjames@nyke.com'),(28,'coach','Leo','Messi','1010101010','goat@futbol.com'),(29,'coach','Shaun','White','0987654321','imshaun@white.com'),(30,'coach','Happy','Gilmore','5555555555','joker@gilmore.com'),(101,'parent','Darth','Vader','1234567890','misunderstoodjedi@deathstar.org'),(102,'student','Luke','Skywalker','0987654321','luke@newjediorder.org'),(103,'student','Leia','Organa','1237894627','princessleia@alderan.gov');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,6 +149,7 @@ CREATE TABLE `stu_par` (
 
 LOCK TABLES `stu_par` WRITE;
 /*!40000 ALTER TABLE `stu_par` DISABLE KEYS */;
+INSERT INTO `stu_par` VALUES (37,39),(38,39);
 /*!40000 ALTER TABLE `stu_par` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +175,7 @@ CREATE TABLE `student` (
   CONSTRAINT `student_progId_fk` FOREIGN KEY (`program_id`) REFERENCES `program` (`id`),
   CONSTRAINT `student_chk_grade` CHECK ((`grade` in (_utf8mb4'k',_utf8mb4'1',_utf8mb4'2',_utf8mb4'3',_utf8mb4'4',_utf8mb4'5',_utf8mb4'6',_utf8mb4'7',_utf8mb4'8',_utf8mb4'9',_utf8mb4'10',_utf8mb4'11',_utf8mb4'12',_utf8mb4'u'))),
   CONSTRAINT `student_chk_status` CHECK ((`status` in (_utf8mb4'active',_utf8mb4'pending',_utf8mb4'inactive')))
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,6 +184,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (102,'1981-02-12','Jedi Temple','U',1,'pending',37),(103,'1980-05-04','Alderan','12',3,'pending',38);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,4 +229,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-07 14:47:35
+-- Dump completed on 2022-12-07 23:17:10
