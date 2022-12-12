@@ -1,2 +1,0 @@
-Create view current students
-Create button to create new users for the system

@@ -12,6 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel='stylesheet' href='styles.css'>
         <script src='scripts.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
     <body>
         <header>
@@ -24,11 +25,39 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                     <li><a href="https://www.linkedin.com/in/kevinngkaion/" target="_blank">LinkedIn</a></li>
                     <li><a href="https://kevinngkaion.wordpress.com/" target="_blank">WordPress</a></li>
                     <li><a href="jQueryDemo.html">JQuery Demo</a></li>
-                    <li><a href="Cosc213Project/index.php">COSC213 Project</a></li>
+                    <li><a href="Cosc213Project/index.php" target="_blank">COSC213 Project</a></li>
                 </ul>
             </nav>
             <a class="contact" href="#"><button>Contact</button></a>
         </header>
-        <main>More content to come!</main>
+        <main>
+            <!--https://imgbin.com/png/SGt5VyQP/the-amazing-spider-man-2-rhino-film-superhero-movie-png-->
+            <div class="surprise" style="position: absolute; top: -590px; overflow: hidden;">
+                <img src="spiderman.png" alt="spiderman on web upside down">
+            </div>
+
+            <div class="secret" style="margin-top: 700px; opacity: 0; cursor: pointer;">
+                <h1>You have found the hidden message! Click me to see what I do!</h1>
+            </div>
+        </main>
+        <script>
+            $(document).ready(function(){
+                alert("There is a hidden message on the page. Try and find it!");
+                // Make my secret message appear
+                $(".secret").hover(function() {
+                        // over
+                        $(this).css("opacity", "100%");
+                    }, function () {
+                        // out
+                        $(this).css("opacity", "0");
+                    }
+                );
+                
+                // Slide up the navbar on click
+                $(".secret").click(function(){
+                    $(".surprise").animate({top: "100px"});
+                })
+            })
+        </script>
     </body>
 </html>

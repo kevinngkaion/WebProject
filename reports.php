@@ -28,10 +28,10 @@ $result = mysqli_query($link, $sql);
                     <li><a href="https://www.linkedin.com/in/kevinngkaion/" target="_blank">My LinkedIn Account</a></li>
                     <li><a href="https://kevinngkaion.wordpress.com/" target="_blank">My WordPress Blog</a></li>
                     <li><a href="jQueryDemo.html">My JQuery Demo</a></li>
-                    <li><a href="otherProjects.html">My Other Projects</a></li>
+                    <li><a href="Cosc213Project/index.php" target="_blank">COSC213 Project</a></li>
                 </ul>
             </nav>
-            <a class="contact" href="#"><button>Contact</button></a>
+            <a class="contact" href="KevinNgkaionResume.pdf" target='_blank'><button>Resume</button></a>
         </header>
         <main>
             <table>
