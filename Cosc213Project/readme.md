@@ -1,7 +1,7 @@
-Author: Kevin Ngkaion
-Date: 12/07/2022
+###Author: Kevin Ngkaion
+###Date: 12/07/2022
 
-COSC 213 Final Project
+#COSC 213 Final Project
 
 This website is a sports camp management system that shows teachers and admin information on students currently participating in the program.
 
@@ -15,9 +15,9 @@ and password for the user.
 
 The system controls access to user information depending on access level.
 
-The website is live at this URL:
+##The website is live at this URL:
 https://www.kevinngkaion.me/Cosc213Project/index.php
 
-Admin Credentials:
+##Admin Credentials:
 username: admin
 password: password
